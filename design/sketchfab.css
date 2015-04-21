@@ -1,0 +1,120 @@
+#embed-sketchfab-plugin-button {
+  background-image: url(icon.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 15px 15px;
+  color: transparent;
+}
+
+.embed-sketchfab-plugin-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.embed-sketchfab-plugin-pane {
+  position: fixed;
+  width: 500px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  margin-left: -250px;
+  margin-top: -150px;
+  background: #FFF;
+  box-shadow: 0 0 10px -4px;
+  border-radius: 5px;
+}
+
+.embed-sketchfab-plugin-pane h3 {
+  height: 70px;
+  line-height: 70px;
+  font-weight: normal;
+  font-size: 21px;
+  padding: 0 20px 0 50px;
+  margin: 0;
+}
+
+.embed-sketchfab-plugin-pane h3:before {
+  content: " ";
+  position: absolute;
+  left: 20px;
+  top: 25px;
+  width: 20px;
+  height: 20px;
+  background: transparent url(icon.png) no-repeat 0 0;
+  background-size: 100%;
+}
+
+.embed-sketchfab-plugin-pane .close {
+  position: absolute;
+  display: block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  top: 20px;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  right: 10px;
+}
+
+.embed-sketchfab-plugin-pane .close:hover {
+  color: #1caad9;
+}
+
+.embed-sketchfab-plugin-pane .inner {
+  background: #DDD;
+  width: 100%;
+  position: absolute;
+  top: 70px;
+  bottom: 70px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.embed-sketchfab-plugin-pane .inner input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.embed-sketchfab-plugin-pane footer {
+  position: absolute;
+  bottom: 0;
+  height: 70px;
+  left: 0;
+  right: 0;
+  padding: 20px 20px 0 20px;
+  box-sizing: border-box;
+}
+
+.embed-sketchfab-plugin-pane footer input {
+  display: inline-block;
+  position: relative;
+  border: none;
+  border-radius: 4px;
+  padding: 0 13px;
+  height: 30px;
+  line-height: 30px;
+  font-size: .9em;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  float: right;
+  margin-left: 20px;
+}
+
+.embed-sketchfab-plugin-pane footer input[type="submit"] {
+
+  background: #1caad9;
+  color: #FFF;
+  z-index: 100001;
+
+}
