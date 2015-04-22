@@ -2,6 +2,9 @@
 
 This repo contains the code for a plugin that can be installed on instances of Vanilla Forum > 2.2. It's fairly simple : it allows (enforces really) the embedding of sketchfab viewers in topics or comments.
 
+The plugin can either be built by cloning this repo and executing build.sh, or by visiting [The Vanilla forums addon marketplace](http://vanillaforums.org/addons) or the [plugin page](http://vanillaforums.org/addon/sketchfab-plugin) directly.
+
+
 ### Scope
 ----
 
