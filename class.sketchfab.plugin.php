@@ -22,7 +22,7 @@ $PluginInfo['Sketchfab'] = array(
    'AuthorUrl' => 'https://sketchfab.com'
 );
 
-class ExamplePlugin extends Gdn_Plugin {
+class SketchfabPlugin extends Gdn_Plugin {
 
  /**
   * Plugin constructor
