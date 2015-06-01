@@ -13,11 +13,11 @@ $PluginInfo['Sketchfab'] = array(
 
 class SketchfabPlugin extends Gdn_Plugin {
 
- /**
-  * Add a Javascript file to every page.
-  *
-  * @param $Sender Gdn_Controller Sending controller instance.
-  */
+  /**
+   * Add a Javascript file to every page.
+   *
+   * @param $Sender Gdn_Controller Sending controller instance.
+   */
   public function Base_Render_Before($Sender) {
     $Sender->AddJsFile($this->GetResource('js/sketchfab.js', false, false));
   }
