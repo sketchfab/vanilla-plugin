@@ -2,13 +2,10 @@
 
 // Define the plugin:
 $PluginInfo['Sketchfab'] = array(
-   'Description' => 'Provides a button to embed a model easily. Depends on the Advanced Editor plugin.',
+   'Description' => 'Provides an Advanced Editor button to embed a Sketchfab model easily.',
    'Version' => '1.0',
    'RequiredApplications' => array('Vanilla' => '>=2.2'),
-   'RequiredTheme' => FALSE, 
    'RequiredPlugins' => array('editor' => '>=1.7'),
-   'HasLocale' => FALSE,
-   'SettingsPermission' => 'Garden.AdminUser.Only',
    'Author' => "Sketchfab",
    'AuthorEmail' => 'arthur@sketchfab.com',
    'AuthorUrl' => 'https://sketchfab.com'
