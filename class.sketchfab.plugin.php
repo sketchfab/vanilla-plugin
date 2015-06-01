@@ -14,17 +14,6 @@ $PluginInfo['Sketchfab'] = array(
 class SketchfabPlugin extends Gdn_Plugin {
 
  /**
-  * Plugin constructor
-  *
-  * This fires once per page load, during execution of bootstrap.php. It is a decent place to perform
-  * one-time-per-page setup of the plugin object. Be careful not to put anything too strenuous in here
-  * as it runs every page load and could slow down your forum.
-  */
-  public function __construct() {
-    
-  }
- 
- /**
   * Base_Render_Before Event Hook
   *
   * This is a common hook that fires for all controllers (Base), on the Render method (Render), just 
