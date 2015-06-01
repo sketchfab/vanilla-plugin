@@ -32,5 +32,10 @@ class SketchfabPlugin extends Gdn_Plugin {
   public function EditorPlugin_InitEditorToolbar_Handler($Sender, $args) {
     echo '<span id="embed-sketchfab-plugin-button" class="editor-action icon editor-action-sketchfab">S</span>';
   }
-   
+
+  /**
+   * No setup.
+   */
+  public function Setup() {
+  }
 }
