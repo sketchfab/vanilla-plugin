@@ -6,7 +6,7 @@ $(function() {
 		'<div class="embed-sketchfab-plugin-overlay">',
 		'	<section class="embed-sketchfab-plugin-pane">',
 		'		<span class="close">X</span>',
-		'		<h3>Sketchfab Embedder</h3>',
+		'		<h3 class="sketchfab-icon">Sketchfab Embedder</h3>',
 		'		<div class="inner">',
 		'			<label for="sketchfab-model">Paste your model link in the following field :</label><br />',
 		'			<input type="text" placeholder="https://sketchfab.com/models/931f6451ca0e433589980f2243821c86" id="sketchfab-model" name="sketchfab-model"/>',

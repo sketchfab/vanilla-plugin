@@ -39,7 +39,7 @@ class SketchfabPlugin extends Gdn_Plugin {
    * @param $Sender EditorPlugin Not used but required.
    */
   public function EditorPlugin_InitEditorToolbar_Handler($Sender) {
-    echo '<span id="embed-sketchfab-plugin-button" class="editor-action icon editor-action-sketchfab">S</span>';
+    echo '<span id="embed-sketchfab-plugin-button" class="editor-action icon editor-action-sketchfab sketchfab-icon"></span>';
   }
 
   /**

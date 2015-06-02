@@ -1,9 +1,32 @@
+@font-face {
+  font-family: 'skfblogo';
+  src:url('fonts/skfblogo.eot?-d7mrlr');
+  src:url('fonts/skfblogo.eot?#iefix-d7mrlr') format('embedded-opentype'),
+    url('fonts/skfblogo.ttf?-d7mrlr') format('truetype'),
+    url('fonts/skfblogo.woff?-d7mrlr') format('woff'),
+    url('fonts/skfblogo.svg?-d7mrlr#skfblogo') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 #embed-sketchfab-plugin-button {
-  background-image: url(icon.png);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 15px 15px;
-  color: transparent;
+  vertical-align: middle;
+}
+
+.sketchfab-icon:before {
+  content: "\e601";
+
+  font-family: 'skfblogo';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .embed-sketchfab-plugin-overlay {
@@ -33,19 +56,14 @@
   line-height: 70px;
   font-weight: normal;
   font-size: 21px;
-  padding: 0 20px 0 50px;
+  padding: 0 20px 0 20px;
   margin: 0;
 }
 
 .embed-sketchfab-plugin-pane h3:before {
-  content: " ";
-  position: absolute;
-  left: 20px;
-  top: 25px;
-  width: 20px;
-  height: 20px;
-  background: transparent url(icon.png) no-repeat 0 0;
-  background-size: 100%;
+  font-size: 26px;
+  vertical-align: middle;
+  margin-right: 10px;
 }
 
 .embed-sketchfab-plugin-pane .close {
@@ -80,6 +98,8 @@
   padding: 10px;
   font-size: 14px;
   margin-top: 10px;
+  -webkit-appearance: none;
+  border: 1px solid #999;
 }
 
 .embed-sketchfab-plugin-pane footer {
