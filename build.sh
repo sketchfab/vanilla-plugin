@@ -8,7 +8,6 @@ cp class.sketchfab.plugin.php dist/Sketchfab/
 cp icon.png dist/Sketchfab/
 cp -r js dist/Sketchfab/
 cp -r design dist/Sketchfab/
-cp -r views dist/Sketchfab/
 
 cd dist
 zip -r sketchfab-plugin.zip *
