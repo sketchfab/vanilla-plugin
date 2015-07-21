@@ -19,7 +19,7 @@ class SketchfabPlugin extends Gdn_Plugin {
    * @param $Sender Gdn_Controller Sending controller instance.
    */
   public function Base_Render_Before($Sender) {
-    $Sender->AddJsFile($this->GetResource('js/sketchfab.js', false, false));
+    $Sender->AddJsFile('sketchfab.js', 'plugins/sketchfab');
   }
 
   /**
@@ -28,7 +28,7 @@ class SketchfabPlugin extends Gdn_Plugin {
    * @param $Sender AssetModel Where we add the CSS file.
    */
   public function AssetModel_StyleCss_Handler($Sender) {
-    $Sender->AddCssFile($this->GetResource('design/sketchfab.css', false, false));
+    $Sender->AddCssFile('sketchfab.css', 'plugins/sketchfab');
   }
 
   /**
