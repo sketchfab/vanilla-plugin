@@ -40,8 +40,8 @@ $(function() {
 	// Initial tag replacement
 	sketchfab.renderTags();
 
-
 });
+
 
 var SketchfabPlugin = function SketchfabPlugin(opt) {
 
@@ -57,10 +57,12 @@ var SketchfabPlugin = function SketchfabPlugin(opt) {
 	}
 
 	this.$editor = $('.BodyBox');
+	this.editor = this.$editor[0];
 	this.$toolbar = $('.editor');
 
 	this.tag = opt.tag;
 	this.embed = opt.embed;
+	this.mode = this.$editor.attr('format');
 
 	// Put the button at the end of the editor toolbar.
 	// Unfortunately, there is no hook to render the button
@@ -119,7 +121,21 @@ SketchfabPlugin.prototype.onSubmit = function onSubmit() {
 	var modelId = url.substring(url.lastIndexOf('/') + 1);
 	var text = this.renderText(modelId);
 
-	this.insertAtCursor(text);
+	if ((this.mode || '').toLowerCase() === 'wysiwyg') {
+		var iframe = this.$editor.parent().find('iframe')[0];
+		this.$editor.trigger('appendHtml', text);
+
+		if (iframe) {
+			var a = iframe.contentWindow.document.querySelectorAll('a[rel*=sketchfab]');
+			for (var b = 0; b < a.length; b++) {
+				this.renderPreviewTag(a[b]);
+			}
+		}
+
+	} else {
+		this.replaceSelectedText(text);
+	}
+
 	this.close();
 
 };
@@ -161,6 +177,20 @@ SketchfabPlugin.prototype.renderTag = function renderTag(el) {
 	}
 
 };
+// 'preview render' doesn't remove the link and adds an iframe beside it knowing that it
+// will be stripped by vanilla on submit.
+SketchfabPlugin.prototype.renderPreviewTag = function renderTag(el) {
+
+	var url = el.href;
+	var embed;
+	var modelId = url.substring(url.lastIndexOf('/') + 1);
+
+	embed = $(this.embed.replace('{{}}', modelId));
+
+	$(el).after(embed);
+	$(el).css('display', 'none');
+
+};
 
 // Check that the provided string matches our need
 SketchfabPlugin.prototype.validate = function validate(url) {
@@ -172,7 +202,7 @@ SketchfabPlugin.prototype.validate = function validate(url) {
 
 };
 // Insert the rendered tag at the current position of the caret in the textarea
-SketchfabPlugin.prototype.insertAtCursor = function insertAtCursor(myValue) {
+SketchfabPlugin.prototype.replaceSelectedText = function replaceSelectedText(myValue) {
 
 	var myField = this.$editor[0];
 	var sel;
