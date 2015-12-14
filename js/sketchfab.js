@@ -59,10 +59,9 @@ var SketchfabPlugin = function SketchfabPlugin(opt) {
 	this.$editor = $('.BodyBox');
 	this.editor = this.$editor[0];
 	this.$toolbar = $('.editor');
-
 	this.tag = opt.tag;
 	this.embed = opt.embed;
-	this.mode = this.$editor.attr('format');
+	this.mode = 'html';
 
 	// Put the button at the end of the editor toolbar.
 	// Unfortunately, there is no hook to render the button
@@ -76,6 +75,9 @@ var SketchfabPlugin = function SketchfabPlugin(opt) {
 	this.$container.on('click', '.embed-sketchfab-plugin-pane input[type=submit]', this.onSubmit.bind(this));
 	this.$container.on('keyup', '.embed-sketchfab-plugin-pane input[type=text]', this.onChange.bind(this));
 	$(document).on('DOMNodeInserted', '.MessageList', this.renderTags.bind(this));
+	$(document).on('editorParseRules', function() {
+		this.mode = 'wysiwyg';
+	}.bind(this));
 
 };
 
