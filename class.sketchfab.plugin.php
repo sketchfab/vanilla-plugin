@@ -8,7 +8,8 @@ $PluginInfo['Sketchfab'] = array(
    'RequiredPlugins' => array('editor' => '>=1.7'),
    'Author' => "Sketchfab",
    'AuthorEmail' => 'arthur@sketchfab.com',
-   'AuthorUrl' => 'https://sketchfab.com'
+   'AuthorUrl' => 'https://sketchfab.com',
+   'License' => 'GPLv2'
 );
 
 class SketchfabPlugin extends Gdn_Plugin {
