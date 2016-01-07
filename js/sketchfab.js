@@ -34,10 +34,12 @@ $(function() {
 		template: template,
 		container: 'body',
 		tag: '<a href="https://sketchfab.com/models/{{}}" rel="sketchfab">model</a>',
-		embed: '<iframe width="640" height="480" src="https://sketchfab.com/models/{{}}/embed?autostart=0" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>'
+		embed: '<iframe width="640" height="480" src="https://sketchfab.com/models/{{}}/embed?autostart=0" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>',
+		bbCodeRegex: /\[SKETCHFAB\]([0-9A-Fa-f]+)\[\/SKETCHFAB\]/i
 	});
 
 	// Initial tag replacement
+	sketchfab.renderLegacyTags();
 	sketchfab.renderTags();
 
 });
@@ -62,6 +64,7 @@ var SketchfabPlugin = function SketchfabPlugin(opt) {
 	this.tag = opt.tag;
 	this.embed = opt.embed;
 	this.mode = 'html';
+	this.bbCodeRegex = opt.bbCodeRegex;
 
 	// Put the button at the end of the editor toolbar.
 	// Unfortunately, there is no hook to render the button
@@ -147,6 +150,24 @@ SketchfabPlugin.prototype.onSubmit = function onSubmit() {
 SketchfabPlugin.prototype.renderText = function renderText(modelId) {
 
 	return this.tag.replace('{{}}', modelId);
+
+};
+
+
+// (DB to) legacy BBCode tags
+SketchfabPlugin.prototype.renderLegacyTags = function renderTags(e) {
+
+	$('.MessageList .Item .Message').each(function(i, el) {
+
+		var html = $(el).html();
+		var uid = html.match(this.bbCodeRegex);
+		if (uid && uid[1]) {
+			var toReplace = this.renderText(uid[1]);
+			html = html.replace(uid[0], toReplace);
+			$(el).html(html);
+		}
+
+	}.bind(this));
 
 };
 
