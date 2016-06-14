@@ -33,7 +33,7 @@ $(function() {
 		button: '#embed-sketchfab-plugin-button',
 		template: template,
 		container: 'body',
-		tag: '<a href="https://sketchfab.com/models/{{}}" rel="sketchfab">model</a>',
+		tag: '<a href="https://sketchfab.com/models/{{}}#UNIQSKFBVANILLA" data-sketchfab type="sketchfab" rel="sketchfab">model</a>',
 		embed: '<iframe width="640" height="480" src="https://sketchfab.com/models/{{}}/embed?autostart=0" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>',
 		bbCodeRegex: /\[SKETCHFAB\]([0-9A-Fa-f]+)\[\/SKETCHFAB\]/i
 	});
@@ -78,6 +78,38 @@ var SketchfabPlugin = function SketchfabPlugin(opt) {
 	this.$container.on('click', '.embed-sketchfab-plugin-pane input[type=submit]', this.onSubmit.bind(this));
 	this.$container.on('keyup', '.embed-sketchfab-plugin-pane input[type=text]', this.onChange.bind(this));
 	$(document).on('DOMNodeInserted', '.MessageList', this.renderTags.bind(this));
+	$(document).on('DOMNodeInserted', function(e) {
+		var $t = $(e.target);
+		if ($t.attr('id') !== 'embed-sketchfab-plugin-button') {
+			$t = $t.find('#embed-sketchfab-plugin-button');
+		}
+
+		if ($t.length) {
+			var $p = $t.parent();
+			if (!$p.hasClass('editor')) {
+				var $e = $p.closest('form').find('.editor');
+				$e.append($t);
+			}
+
+			setTimeout(function() {
+
+				if ((this.mode || '').toLowerCase() === 'wysiwyg') {
+					var iframe = $t.closest('form').find('iframe')[0];
+					if (iframe && iframe.contentWindow) {
+						var a = iframe.contentWindow.document.querySelectorAll('a[href*="#UNIQSKFBVANILLA"], a[rel*=sketchfab]');
+						for (var b = 0; b < a.length; b++) {
+							var $a = $(a[b]);
+							if (!$a.next().length || $a.next()[0].tagName.toLowerCase() !== 'iframe') {
+								this.renderPreviewTag(a[b]);
+							}
+						}
+					}
+				}
+			}.bind(this), 200);
+		}
+
+
+	}.bind(this));
 	$(document).on('editorParseRules', function() {
 		this.mode = 'wysiwyg';
 	}.bind(this));
@@ -85,7 +117,8 @@ var SketchfabPlugin = function SketchfabPlugin(opt) {
 };
 
 
-SketchfabPlugin.prototype.open = function open() {
+SketchfabPlugin.prototype.open = function open(e) {
+	this.$editor = $(e.currentTarget).closest('form').find('.BodyBox');
 	this.$container.append(this.$pane);
 	$('.embed-sketchfab-plugin-pane input[type=text]').val('').focus();
 };
@@ -130,10 +163,14 @@ SketchfabPlugin.prototype.onSubmit = function onSubmit() {
 		var iframe = this.$editor.parent().find('iframe')[0];
 		this.$editor.trigger('appendHtml', text);
 
-		if (iframe) {
-			var a = iframe.contentWindow.document.querySelectorAll('a[rel*=sketchfab]');
+		if (iframe && iframe.contentWindow) {
+			var a = iframe.contentWindow.document.querySelectorAll('a[href*="#UNIQSKFBVANILLA"], a[rel*=sketchfab]');
+
 			for (var b = 0; b < a.length; b++) {
-				this.renderPreviewTag(a[b]);
+				var $a = $(a[b]);
+				if (!$a.next().length || $a.next()[0].tagName.toLowerCase() !== 'iframe') {
+					this.renderPreviewTag(a[b]);
+				}
 			}
 		}
 
@@ -180,7 +217,7 @@ SketchfabPlugin.prototype.renderTags = function renderTags(e) {
 
 	// Using rel= as a tag is not exactly ideal, but Vanilla removes
 	// data-attr and overall fishy attributes.
-	$('a[rel*=sketchfab]').each(function(i, el) {
+	$('a[href*="#UNIQSKFBVANILLA"], a[rel*=sketchfab]').each(function(i, el) {
 		this.renderTag(el);
 	}.bind(this));
 };
@@ -191,6 +228,7 @@ SketchfabPlugin.prototype.renderTag = function renderTag(el) {
 
 	var embed;
 	var modelId = url.substring(url.lastIndexOf('/') + 1);
+	modelId = modelId.split('#').shift();
 
 	if (parent) {
 
@@ -207,6 +245,7 @@ SketchfabPlugin.prototype.renderPreviewTag = function renderTag(el) {
 	var url = el.href;
 	var embed;
 	var modelId = url.substring(url.lastIndexOf('/') + 1);
+	modelId = modelId.split('#').shift();
 
 	embed = $(this.embed.replace('{{}}', modelId));
 
