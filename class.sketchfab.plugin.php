@@ -3,7 +3,7 @@
 // Define the plugin:
 $PluginInfo['Sketchfab'] = array(
    'Description' => 'Provides an Advanced Editor button to embed a Sketchfab model easily.',
-   'Version' => '1.5',
+   'Version' => '1.6',
    'RequiredApplications' => array('Vanilla' => '>=2.2'),
    'RequiredPlugins' => array('editor' => '>=1.7'),
    'Author' => "Sketchfab",
