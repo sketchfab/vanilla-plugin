@@ -258,7 +258,7 @@ SketchfabPlugin.prototype.renderPreviewTag = function renderTag(el) {
 SketchfabPlugin.prototype.validate = function validate(url) {
 
 	url = url.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-	var regexp = /^(http|https):\/\/sketchfab.com\/(show|models)\/([^/]+)$/;
+	var regexp = /^https?:\/\/sketchfab\.com\/(?:models\/|3d-models\/(?:[^\/\s]+-)?)([a-z0-9]{32})/;
 
 	return regexp.test(url);
 
