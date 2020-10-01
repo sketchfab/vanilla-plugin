@@ -116,6 +116,10 @@ var SketchfabPlugin = function SketchfabPlugin(opt) {
 
 };
 
+SketchfabPlugin.prototype.getModelUID = function(url) {
+	// Remove query string, hash, path, and slug
+	return url.split(/[?#]/).shift().split('-').slice(-1).shift();
+};
 
 SketchfabPlugin.prototype.open = function open(e) {
 	this.$editor = $(e.currentTarget).closest('form').find('.BodyBox');
@@ -156,8 +160,8 @@ SketchfabPlugin.prototype.onSubmit = function onSubmit() {
 		window.alert('Invalid model URL');
 	}
 
-	var modelId = url.substring(url.lastIndexOf('/') + 1);
-	var text = this.renderText(modelId);
+	var modelUID = this.getModelUID(url);
+	var text = this.renderText(modelUID);
 
 	if ((this.mode || '').toLowerCase() === 'wysiwyg') {
 		var iframe = this.$editor.parent().find('iframe')[0];
@@ -184,9 +188,9 @@ SketchfabPlugin.prototype.onSubmit = function onSubmit() {
 
 
 // pasted URL to custom tag (to DB)
-SketchfabPlugin.prototype.renderText = function renderText(modelId) {
+SketchfabPlugin.prototype.renderText = function renderText(modelUID) {
 
-	return this.tag.replace('{{}}', modelId);
+	return this.tag.replace('{{}}', modelUID);
 
 };
 
@@ -227,12 +231,11 @@ SketchfabPlugin.prototype.renderTag = function renderTag(el) {
 	var parent = el.parentNode;
 
 	var embed;
-	var modelId = url.substring(url.lastIndexOf('/') + 1);
-	modelId = modelId.split('#').shift();
+	var modelUID = this.getModelUID(url);
 
 	if (parent) {
 
-		embed = $(this.embed.replace('{{}}', modelId));
+		embed = $(this.embed.replace('{{}}', modelUID));
 		parent.replaceChild(embed[0], el);
 
 	}
@@ -244,10 +247,9 @@ SketchfabPlugin.prototype.renderPreviewTag = function renderTag(el) {
 
 	var url = el.href;
 	var embed;
-	var modelId = url.substring(url.lastIndexOf('/') + 1);
-	modelId = modelId.split('#').shift();
+	var modelUID = this.getModelUID(url);
 
-	embed = $(this.embed.replace('{{}}', modelId));
+	embed = $(this.embed.replace('{{}}', modelUID));
 
 	$(el).after(embed);
 	$(el).css('display', 'none');
@@ -258,9 +260,9 @@ SketchfabPlugin.prototype.renderPreviewTag = function renderTag(el) {
 SketchfabPlugin.prototype.validate = function validate(url) {
 
 	url = url.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-	var regexp = /^https?:\/\/sketchfab\.com\/(?:models\/|3d-models\/(?:[^\/\s]+-)?)([a-z0-9]{32})/;
+	var urlRegex = /https:\/\/sketchfab\.com\/(3d-)?models\/([\w-]+)/;
 
-	return regexp.test(url);
+	return urlRegex.test(url);
 
 };
 // Insert the rendered tag at the current position of the caret in the textarea
