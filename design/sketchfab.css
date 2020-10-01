@@ -1,141 +1,138 @@
 @font-face {
-  font-family: 'skfblogo';
-  src:url('fonts/skfblogo.eot?-d7mrlr');
-  src:url('fonts/skfblogo.eot?#iefix-d7mrlr') format('embedded-opentype'),
-    url('fonts/skfblogo.ttf?-d7mrlr') format('truetype'),
-    url('fonts/skfblogo.woff?-d7mrlr') format('woff'),
-    url('fonts/skfblogo.svg?-d7mrlr#skfblogo') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'skfblogo';
+    src: url('fonts/skfblogo.eot?-d7mrlr');
+    src: url('fonts/skfblogo.eot?#iefix-d7mrlr') format('embedded-opentype'),
+        url('fonts/skfblogo.ttf?-d7mrlr') format('truetype'),
+        url('fonts/skfblogo.woff?-d7mrlr') format('woff'),
+        url('fonts/skfblogo.svg?-d7mrlr#skfblogo') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 #embed-sketchfab-plugin-button {
-  vertical-align: middle;
+    vertical-align: middle;
 }
 
 .sketchfab-icon:before {
-  content: "\e601";
+    content: "\e601";
+    font-family: 'skfblogo' !important;
+    speak: none !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    line-height: 1 !important;
 
-  font-family: 'skfblogo'!important;
-  speak: none!important;
-  font-style: normal!important;
-  font-weight: normal!important;
-  font-variant: normal!important;
-  text-transform: none!important;
-  line-height: 1!important;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased!important;
-  -moz-osx-font-smoothing: grayscale!important;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
 }
 
 .embed-sketchfab-plugin-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .embed-sketchfab-plugin-pane {
-  position: fixed;
-  width: 500px;
-  height: 300px;
-  top: 50%;
-  left: 50%;
-  margin-left: -250px;
-  margin-top: -150px;
-  background: #FFF;
-  box-shadow: 0 0 10px -4px;
-  border-radius: 5px;
+    position: fixed;
+    width: 500px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -150px;
+    background: #FFF;
+    box-shadow: 0 0 10px -4px;
+    border-radius: 5px;
 }
 
 .embed-sketchfab-plugin-pane h3 {
-  height: 70px;
-  line-height: 70px;
-  font-weight: normal;
-  font-size: 21px;
-  padding: 0 20px 0 20px;
-  margin: 0;
+    height: 70px;
+    line-height: 70px;
+    font-weight: normal;
+    font-size: 21px;
+    padding: 0 20px 0 20px;
+    margin: 0;
 }
 
 .embed-sketchfab-plugin-pane h3:before {
-  font-size: 26px;
-  vertical-align: middle;
-  margin-right: 10px;
-  color: #1caad9;
+    font-size: 26px;
+    vertical-align: middle;
+    margin-right: 10px;
+    color: #1caad9;
 }
 
 .embed-sketchfab-plugin-pane .close {
-  position: absolute;
-  display: block;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  top: 20px;
-  font-size: 20px;
-  line-height: 30px;
-  text-align: center;
-  right: 10px;
+    position: absolute;
+    display: block;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    top: 20px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    right: 10px;
 }
 
 .embed-sketchfab-plugin-pane .close:hover {
-  color: #1caad9;
+    color: #1caad9;
 }
 
 .embed-sketchfab-plugin-pane .inner {
-  background: #DDD;
-  width: 100%;
-  position: absolute;
-  top: 70px;
-  bottom: 70px;
-  padding: 20px;
-  box-sizing: border-box;
+    background: #DDD;
+    width: 100%;
+    position: absolute;
+    top: 70px;
+    bottom: 70px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .embed-sketchfab-plugin-pane .inner input {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  margin-top: 10px;
-  -webkit-appearance: none;
-  border: 1px solid #999;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 10px;
+    -webkit-appearance: none;
+    border: 1px solid #999;
 }
 
 .embed-sketchfab-plugin-pane footer {
-  position: absolute;
-  bottom: 0;
-  height: 70px;
-  left: 0;
-  right: 0;
-  padding: 20px 20px 0 20px;
-  box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    height: 70px;
+    left: 0;
+    right: 0;
+    padding: 20px 20px 0 20px;
+    box-sizing: border-box;
 }
 
 .embed-sketchfab-plugin-pane footer input {
-  display: inline-block;
-  position: relative;
-  border: none;
-  border-radius: 4px;
-  padding: 0 13px;
-  height: 30px;
-  line-height: 30px;
-  font-size: .9em;
-  font-weight: 600;
-  text-align: center;
-  text-shadow: none;
-  text-transform: uppercase;
-  cursor: pointer;
-  outline: none;
-  float: right;
-  margin-left: 20px;
+    display: inline-block;
+    position: relative;
+    border: none;
+    border-radius: 4px;
+    padding: 0 13px;
+    height: 30px;
+    line-height: 30px;
+    font-size: .9em;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    float: right;
+    margin-left: 20px;
 }
 
 .embed-sketchfab-plugin-pane footer input[type="submit"] {
-
-  background: #1caad9;
-  color: #FFF;
-  z-index: 100001;
-
+    background: #1caad9;
+    color: #FFF;
+    z-index: 100001;
 }
