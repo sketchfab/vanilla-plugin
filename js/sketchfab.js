@@ -112,8 +112,9 @@ var SketchfabPlugin = function SketchfabPlugin(opt) {
 };
 
 SketchfabPlugin.prototype.getModelUID = function(url) {
-    // Remove query string, hash, path, and slug
-    return url.split(/[?#]/).shift().split('-').slice(-1).shift();
+    var urlRegex = /https:\/\/sketchfab\.com\/(3d-)?models\/([\w-]+)/;
+    var uid = url.match(urlRegex)[2].split('-').splice(-1).shift();
+    return uid;
 };
 
 SketchfabPlugin.prototype.open = function open(e) {
